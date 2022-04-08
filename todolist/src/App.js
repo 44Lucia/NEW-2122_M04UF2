@@ -13,31 +13,33 @@ class App extends React.Component{
 		console.log("Entrando");
 	}
 
-/*
-	componentDidMount = () =>{
-		fetch("http://10.40.2.31:3030/")
-			.then(response => response.json())
-			.then(data => this.setTasks(data));
-	}
-*/
-	setTasks = data => {
-		let tasks = [];
-		for (let i = 0; i < data.length; i++)
-			tasks.push(data[i].task);
+	componentWillMount () {
+        fetch("http://172.31.99.183:3030/")
+            .then(response => response.json())
+			.then( data => this.SetTasks(data));
+    }
 
-		this.state.tasks = tasks;
-		this.setState({
+    SetTasks = data => {
+        console.log(data);
+        for (let i = 0; i < data.length; i++){
+            this.state.tasks.push(data[i].task);
+        }
+        this.setState({
 			tasks: this.state.tasks
 		});
-	};
+    };
 
-	addTask = task => {
-		this.state.tasks.push(task);
-		this.setState({
+    addTask = task => {
+        this.state.tasks.push(task);
+        this.setState({
 			tasks: this.state.tasks
 		});
-	}
 
+        fetch("http://172.31.99.183:3030/",{
+            method: "POST",
+            body: '{"task":"'+task+'"}'
+		});
+    }	
 
 	removeTask = id_task => {
 		this.state.tasks.splice(id_task, 1);
