@@ -1,64 +1,90 @@
-#!/usr/bin/node
-
-const http = require("http");
-
+re("http");
 let mongo_client = require("mongodb").MongoClient;
-let url = "mongodb://localhost/";
 let ObjectId = require("mongodb").ObjectID;
+
+let url = "mongodb://localhost";
+
 let db;
 
-console.log("Iniciando server mongo-http");
+let fs = require("fs");
 
-mongo_client.connect(url, function(error, conn){
-	console.log("Dentro de MongoDB");
-		if (error){
-			console.log("No se ha podido acceder a Mongo :\(");
-			return;
-		}
-		db = conn.db("todolist");
-});
+console.log("Starting Server...");
 
-http.createServer(function(req, res) {
-	res.writeHead(200, {
-      		'Content-Type': 'application/json',
-      		'Access-Control-Allow-Origin': '*',
-      		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-	});
+mongo_client.connect(url, function(err,conn )
+{
+	if (err) {
+	console.log("ERROR");
+	return;}
 
-	if (req.method == "POST") {
+	db = conn.db("ToDoList");
+	console.log("Inside Server");
+}
+
+);
+
+
+
+http.createServer(function(req,res){
+
+	res.writeHead(200, {	
+	      'Content-Type': 'application/json',
+		  'Access-Control-Allow-Origin': '*',
+		  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+					    });
+		
+		if (req.method == "POST"){
 		let task = [];
-		req.on('data', function(chunk) {
-			task += chunk;
+		req.on('data', function(data){
+			task+= data;
 		});
-
-		req.on('end', function() {
-			task = JSON.parse(task);		
 			
-			if (task.remove == "false") {
-				db.collection("tasks").insertOne({"task":task.tasks});				
-				let new_obj = db.collection("tasks").find().sort({"_id":-1}).limit(1);			
-				let obj_id;
-				new_obj.toArray(function(err,doc) {
-					obj_id  = JSON.stringify(doc);
-					res.end(obj_id);
-					return;
-				});
-			}
-			else {
-				let idd = new ObjectId(task.task_id);	
-				let id =  {_id: idd};
-				db.collection("tasks").deleteOne(id);
+		req.on('end', function(){
+			
+		task = JSON.parse(task);		
+		if (task.remove == "false"){
+			console.log(task);
+				
+			console.log(task.tasks);
+			db.collection("tasks").insertOne({"task":task.tasks});	
+			
+			let new_obj = db.collection("tasks").find().sort({"_id":-1}).limit(1);
+			
+			let obj_id;
+			new_obj.toArray(function(err,doc){
+			 
+			obj_id  = JSON.stringify(doc);
+						
+			console.log(obj_id);
+		
+
+
+			res.end(obj_id);
+			return;});
+			}else{
+			let idd = new ObjectId(task.task_id);	
+			let id =  {_id: idd};
+			console.log(id); 
+			console.log(db.collection("tasks").deleteOne(id));
 			}	
 		});
-		return;
-	}	
+		
 
-	let task_obj = db.collection("tasks").find();
-	let task_json;
-	task_obj.toArray(function(err,data){
-		task_json = JSON.stringify(data);
-		res.end(task_json);
-		return;
+			return;
+		}
+
+		let task_obj = db.collection("tasks").find();
+
+		let task_json;
+
+		task_obj.toArray(function(err,data){
+
+			task_json = JSON.stringify(data);
+		
+			res.end(task_json);
+			return;
 	});
-	return;
+
+
+return;
+
 }).listen(3030);
