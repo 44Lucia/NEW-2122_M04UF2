@@ -15,10 +15,6 @@ class TaskForm extends React.Component{
 		event.preventDefault();
 		this.props.addTask(this.state.task);
 
-		this.state.task = "";
-		this.setState({
-			task: this.state.task
-		});
 	}
 
 	handleChange = (event) => {
@@ -30,9 +26,9 @@ class TaskForm extends React.Component{
 	render()
 	{
 		return (
-			<form onSubmit={this.handleSubmit}>
-			<TaskInput value={this.state.task} handleChange={this.handleChange} />
-			<TaskSubmit />
+			<form >
+			<TaskInput handleChange={this.handleChange} onSumbit={this.handleSubmit}/>
+			<TaskSubmit onSubmit={this.handleSubmit}/>
 			</form>
 		);
 
