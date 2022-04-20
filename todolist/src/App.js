@@ -5,8 +5,6 @@ import Title from './Title';
 
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
-import AAA from './'
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -22,7 +20,7 @@ class App extends React.Component {
 	}
 		
 	componentDidMount = () => {
-		fetch("http://172.31.99.183:3030")
+		fetch("http://192.168.1.10:3030")
 			.then(response => response.json())
 			.then(data => this.setTasks(data));
 };
@@ -30,7 +28,6 @@ class App extends React.Component {
 
 	setTasks = data => {
 
-	let tasks_ar = [];
 	
 	for (let i = 0; i< data.length; i++)	
 		{
@@ -57,7 +54,7 @@ class App extends React.Component {
 	addTask = task =>{
 
 	
-	 fetch("http://172.31.99.183:3030", {method:"POST", body: '{"tasks":"' +task+'", "remove":"false"}' })
+	 fetch("http://192.168.1.10:3030", {method:"POST", body: '{"task":"' +task+'", "remove":"false"}' })
 	 .then(response => response.json() )
      .then(data => {let id = data[0]["_id"]
 
@@ -81,11 +78,7 @@ class App extends React.Component {
 	this.setState({
 	tasks:this.state.tasks
 	});
-	fetch("http://172.31.88.183:3030", {method:"post", body: '{"task_id":"' +id_task+'", "remove":"true"}' });
-
-
-			console.log(task);
-			console.log(id_task);
+	fetch("http://192.168.1.10:3030", {method:"post", body: '{"task_id":"' +id_task+'", "remove":"true"}' });
 
 }
 

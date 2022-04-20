@@ -29,7 +29,8 @@ render(){
 			onSubmit={this.handleSubmit}
 			/>
 
-		);
+	);
+
 	}
 }
 export default TaskInput;
