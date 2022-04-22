@@ -1,4 +1,6 @@
-re("http");
+#!/usr/bin/node
+
+let http = require("http");
 let mongo_client = require("mongodb").MongoClient;
 let ObjectId = require("mongodb").ObjectID;
 
