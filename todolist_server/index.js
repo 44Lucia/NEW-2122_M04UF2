@@ -18,7 +18,7 @@ mongo_client.connect(url, function(err,conn )
 	console.log("ERROR");
 	return;}
 
-	db = conn.db("ToDoList");
+	db = conn.db("todolist");
 	console.log("Inside Server");
 }
 
@@ -47,7 +47,7 @@ http.createServer(function(req,res){
 			console.log(task);
 				
 			console.log(task.tasks);
-			db.collection("tasks").insertOne({"task":task.tasks});	
+			db.collection("tasks").insertOne({"task":task.task});	
 			
 			let new_obj = db.collection("tasks").find().sort({"_id":-1}).limit(1);
 			

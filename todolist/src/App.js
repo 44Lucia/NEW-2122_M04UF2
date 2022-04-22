@@ -56,9 +56,8 @@ class App extends React.Component {
 	
 	 fetch("http://192.168.1.10:3030", {method:"POST", body: '{"task":"' +task+'", "remove":"false"}' })
 	 .then(response => response.json() )
-     .then(data => {let id = data[0]["_id"]
-
-	
+     .then(data => {
+	 	let id = data[0];
 
 		this.state.tasks.push(task);
 		this.state.tasks_id.push(id);
