@@ -18,7 +18,7 @@ class App extends React.Component {
 			tasks:[]
 		};
 	}
-		
+//		
 	componentDidMount = () => {
 		fetch("http://192.168.1.10:3030")
 			.then(response => response.json())
