@@ -8,8 +8,9 @@ class TaskInput extends React.Component{
 		this.state = {
 		value: ""
 
-	};
-}
+		};
+	}
+
 	handleChange = (event)=>{
 	this.props.handleChange(event);
 		this.setState({
@@ -22,11 +23,11 @@ class TaskInput extends React.Component{
 render(){
 	return(
 			<TextField id="task_input" 	
-			label="Tarea" 
-			variant="outlined" 
-			value={this.state.value}  
-			onChange={this.handleChange}
-			onSubmit={this.handleSubmit}
+				label="Tarea" size="small" variant="filled"
+				variant="outlined" 
+				value={this.state.value}  
+				onChange={this.handleChange}
+				onSubmit={this.handleSubmit}
 			/>
 
 	);

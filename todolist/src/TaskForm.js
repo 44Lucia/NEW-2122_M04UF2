@@ -27,8 +27,8 @@ class TaskForm extends React.Component{
 	{
 		return (
 			<form onSubmit={this.handleSubmit}>
-			<TaskInput handleChange={this.handleChange} />
-			<TaskSubmit />
+			<TaskInput handleChange={this.handleChange} onSubmit={this.handleSubmit} />
+			<TaskSubmit onSubmit={this.handleSubmit} />
 			</form>
 		);
 
