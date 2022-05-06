@@ -3,3 +3,43 @@ html {
 	height: 100vh;
 	width: 100%;
 }
+
+header{
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+/*fieldset {
+	margin: 0px 60px 0px 60px;
+	border-radius: 20px;
+	text-align: center;
+	background-color: #D3D3D3;
+}*/
+
+.App{
+	background-color: #FFFFFF;
+	text-align: center;
+	max-width: 500px;
+	width: 100%;
+	border-radius: 5px;
+	padding: 15px;
+	margin: 120px auto;
+}
+
+#task-item {
+	padding: 0px 15px;	
+	margin-top: 15px;	
+	border-radius: 20px;
+	background-color: #D3D3D3;
+}
+
+#task-input{
+	border-radius: 5px;
+    background-color: #D3D3D3;
+}
+
+#tasl-submit{
+	margin-top: 5px;
+	color: black;
+}

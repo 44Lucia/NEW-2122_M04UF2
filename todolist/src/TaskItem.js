@@ -6,7 +6,7 @@ import RemoveTask from "./RemoveTask";
 
 function TaskItem(props){
 	return (
-		<ListItem  >
+		<ListItem  id="task-item">
 		<ListItemButton>
 			<ListItemText primary={props.task} />
 			<RemoveTask task_id={props.task_id}

@@ -44,15 +44,7 @@ class RemoveTask extends React.Component{
 	<div>
 		<Button variant="contained" 
 				startIcon=<DeleteIcon /> 
-				onClick={this.handleOnClick}
-
-
-			//	{function(event){	
-					
-					//props.removeTask(props.task_id);
-
-				
-				
+				onClick={this.handleOnClick}		
 		>	
 
 		BORRAR
@@ -64,14 +56,14 @@ class RemoveTask extends React.Component{
 			onClose={this.handleClose}
 			>
 			<DialogTitle>
-				'De verdad quieres borrar  ?'
+				'Estas seguro  ? ;('
 					</DialogTitle>
 
 			<DialogContent>
 
 				<img id="michi" src={michiTriste} />
 				<DialogContentText >
-							No me borres...
+							No me borres porfavor...
 						</DialogContentText>
 
 					</DialogContent>
@@ -81,7 +73,7 @@ class RemoveTask extends React.Component{
 						</Button>
 				<Button onClick={this.handleClose}> 
 
-					No, no llores gatito :'(
+					No, no hagas llorar a un gatito 
 					</Button>
 
 			</DialogActions>

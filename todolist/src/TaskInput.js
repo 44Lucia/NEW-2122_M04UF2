@@ -22,7 +22,7 @@ class TaskInput extends React.Component{
 
 render(){
 	return(
-			<TextField id="task_input" 	
+			<TextField id="task-input" 	
 				label="Tarea" size="small" variant="filled"
 				variant="outlined" 
 				value={this.state.value}  
